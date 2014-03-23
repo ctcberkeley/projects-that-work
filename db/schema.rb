@@ -11,9 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140313220548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "project_plans", force: true do |t|
+    t.string   "projectSteps"
+    t.string   "learningGoals"
+    t.string   "fundraisingStrat"
+    t.string   "assessment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", force: true do |t|
+    t.string   "name"
+    t.date     "startDate"
+    t.date     "endDate"
+    t.integer  "duration"
+    t.integer  "grade"
+    t.string   "course"
+    t.integer  "numStudents"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

@@ -1,0 +1,26 @@
+<h1>Projects#new</h1>
+
+<%= form_for @project, url: projects_path do |p|%>
+  <%= p.label(:name, "Project Name:") %>
+  <%= p.text_field(:name) %>
+
+  <%= p.label(:description, "Description:") %>
+  <%= p.text_field(:description) %>
+  
+  <%= p.label(:startDate, "Start Date:") %>
+  <%= p.date_field(:startDate) %>
+  
+  <%= p.label(:endDate, "End Date:") %>
+  <%= p.date_field(:endDate) %>
+  
+  <%= p.label(:grade, "Grade Level:") %>
+  <%= p.number_field(:grade) %>
+  
+  <%= p.label(:course, "Course:") %>
+  <%= p.text_field(:course) %>
+  
+  <%= p.label(:numStudents, "Recommended Number of Students:") %>
+  <%= p.number_field(:numStudents) %>
+  
+  <%= p.submit "Submit" %> 
+<% end %>
