@@ -6,7 +6,6 @@
 development:
   adapter: postgresql
   database: ptw_db
-  user: postgres
   password: password
   host: localhost
 
