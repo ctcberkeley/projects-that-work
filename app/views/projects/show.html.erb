@@ -19,3 +19,20 @@
   <strong> End: </strong>
   <%= @project.endDate %>
 </p>
+
+<p>
+  <strong> Recommended grade level: </strong>
+  <%= @project.grade %>
+</p>
+
+<p>
+  <strong> Course: </strong>
+  <%= @project.course %>
+</p>
+
+<p>
+  <strong> Recommended # students: </strong>
+  <%= @project.numStudents %>
+</p>
+
+<%= link_to 'Back to Projects List', projects_path %>

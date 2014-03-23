@@ -1,6 +1,6 @@
 <h1>Projects#new</h1>
 
-<%= form_for :project, url: projects_path do |p|%>
+<%= form_for @project, url: projects_path do |p|%>
   <%= p.label(:name, "Project Name:") %>
   <%= p.text_field(:name) %>
 
