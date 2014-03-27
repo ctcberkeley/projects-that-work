@@ -1,9 +1,9 @@
 <h1>New Project</h1>
 
-<%= semantic_form_for :project, url: projects_path do |p|%>
+<%= semantic_form_for @project, url: projects_path do |p|%>
   <%= p.inputs do %>
     <%= p.input :name, :label => 'Title' %>
-    <%= p.input :description, :label => 'Description', :hint => 'A broad high-level overview of the project', :as => :text, :input_html => { :maxlength => 300, :rows => 4} %>
+    <%= p.input :description, :label => 'Description', :hint => 'A broad high-level overview of the project', :as => :text, :input_html => { :maxlength => 300, :rows => 4, :spellcheck => true} %>
     <%= p.input :startDate, :as => :date_select %>
     <%= p.input :endDate, :as => :date_select %>
     <%= p.input :grade, :label => 'Grade Level', :hint => 'Recommended Grade Level to participate in project', :as => :range, :min => 6, :max => 12 %>
@@ -12,8 +12,7 @@
   <% end %>
   <%= p.actions do %>
     <%= p.action :submit, :as => :button, :url => projects_path, :label => 'Create Project' %>
-    <%= p.action :cancel, :as => :link, :url => projects_path %>
+    <%= p.action :cancel, :as => :link,  :label => "Cancel", :url => projects_path %>
   <% end %> 
 <% end %>
 
-<%= link_to 'Back to Project List', projects_path %>
