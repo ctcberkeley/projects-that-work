@@ -1,28 +1,19 @@
-<h1>Projects#new</h1>
+<h1>New Project</h1>
 
-<%= form_for @project, url: projects_path do |p|%>
-  <%= p.label(:name, "Project Name:") %>
-  <%= p.text_field(:name) %>
-
-  <%= p.label(:description, "Description:") %>
-  <%= p.text_field(:description) %>
-  
-  <%= p.label(:startDate, "Start Date:") %>
-  <%= p.date_field(:startDate) %>
-  
-  <%= p.label(:endDate, "End Date:") %>
-  <%= p.date_field(:endDate) %>
-  
-  <%= p.label(:grade, "Grade Level:") %>
-  <%= p.number_field(:grade) %>
-  
-  <%= p.label(:course, "Course:") %>
-  <%= p.text_field(:course) %>
-  
-  <%= p.label(:numStudents, "Recommended Number of Students:") %>
-  <%= p.number_field(:numStudents) %>
-  
-  <%= p.submit "Submit" %> 
+<%= semantic_form_for :project, url: projects_path do |p|%>
+  <%= p.inputs do %>
+    <%= p.input :name, :label => 'Title' %>
+    <%= p.input :description, :label => 'Description', :hint => 'A broad high-level overview of the project', :as => :text, :input_html => { :maxlength => 300, :rows => 4} %>
+    <%= p.input :startDate, :as => :date_select %>
+    <%= p.input :endDate, :as => :date_select %>
+    <%= p.input :grade, :label => 'Grade Level', :hint => 'Recommended Grade Level to participate in project', :as => :range, :min => 6, :max => 12 %>
+    <%= p.input :course, :label => 'Course', :hint => 'Most relevant subjects this project will cover' %>
+    <%= p.input :numStudents, :label => 'Class Size', :hint => 'Recommended number of students to participate in project', :as => :range, :min => 5, :step => 5 %>
+  <% end %>
+  <%= p.actions do %>
+    <%= p.action :submit, :as => :button, :url => projects_path, :label => 'Create Project' %>
+    <%= p.action :cancel, :as => :link, :url => projects_path %>
+  <% end %> 
 <% end %>
 
 <%= link_to 'Back to Project List', projects_path %>

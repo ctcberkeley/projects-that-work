@@ -8,19 +8,21 @@ class ProjectsController < ApplicationController
   end
 
   def create
-  	@project = Project.new(project_params)
+  	@project = Project.new(params[:project])
   	@project.save
-  	redirect_to @project
+  	redirect_to projects_path
   end
-
-  private 
-  	def project_params
-		params.require(:project).permit(:name, :description, :startDate, :endDate, :grade, :course, :numStudents)
-	end
 
   def show 
 	@project = Project.find(params[:id])
   end
+
+  private 
+  	def project_params
+		params.require(@project).permit(:name, :description, :startDate, :endDate, :grade, :course, :numStudents)
+	end
+
+ 
 
 end
 
