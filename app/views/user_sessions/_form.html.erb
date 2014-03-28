@@ -1,6 +1,6 @@
-<%= semantic_form_for @user_session, :url => login_path do |f| %>
+<%= semantic_form_for @user_session, :url => create_session_path do |f| %>
     <%= f.inputs do %>
-      <%= f.input :username %>
+      <%= f.input :email %>
       <%= f.input :password, :as => :password%>
     <% end %>
     <%= f.actions do %>

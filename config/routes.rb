@@ -7,7 +7,7 @@ ProjectsThatWork::Application.routes.draw do
 
   get "login" => 'user_sessions#new', as: :login
   get "logout" => "user_sessions#destroy", as: :logout
-  post "login" => "user_sessions#create", as: :login
+  post "loginAttempt" => 'user_sessions#create', as: :create_session
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
