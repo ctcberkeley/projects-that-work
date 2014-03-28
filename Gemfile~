@@ -44,4 +44,16 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# for making simple code for forms and easy stylesheets 
 gem 'formtastic'
+
+#gem student and teacher user registration account tracking 
+gem 'authlogic'
+
+#for quick scaffolding of application elements like user
+gem 'nifty-generators', group: :development
+
+gem "mocha", group: :test
+
+#Type of encrypting that Authlogic uses
+gem "scrypt"

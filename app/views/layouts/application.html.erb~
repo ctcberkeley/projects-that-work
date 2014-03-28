@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>ProjectsThatWork</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+ 
 </head>
 <body>
-
+ <div id="user-nav">
+  	<%= link_to "Register", new_user_path %>
+  </div>
 <%= yield %>
 
 </body>

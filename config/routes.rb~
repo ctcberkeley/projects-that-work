@@ -56,5 +56,5 @@ ProjectsThatWork::Application.routes.draw do
   #     resources :products
   #   end
   resources :projects
-  root 'projects#index'
+  root 'projects'
 end
