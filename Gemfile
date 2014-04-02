@@ -55,5 +55,8 @@ gem 'nifty-generators', group: :development
 
 gem "mocha", group: :test
 
-#Type of encrypting that Authlogic uses
-#gem "scrypt"
+# for Heroku integration 
+gem 'rails_12factor', group: :production
+
+ruby "1.9.3"
+

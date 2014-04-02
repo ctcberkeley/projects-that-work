@@ -5,10 +5,12 @@
 #   gem 'sqlite3'
 development:
   adapter: postgresql
+  encoding: unicode
   database: ptw_db
   user: postgres
+  pool: 5
   password: password
-  host: localhost
+  #host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -19,8 +21,8 @@ development:
 #   pool: 5
 #   timeout: 5000
 
-# production:
-#   adapter: sqlite3
-#   database: db/production.sqlite3
+#production:
+#   adapter: postgresql
+#   database: 
 #   pool: 5
 #   timeout: 5000
