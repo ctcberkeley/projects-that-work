@@ -58,5 +58,8 @@ gem "mocha", group: :test
 # for Heroku integration 
 gem 'rails_12factor', group: :production
 
+# for web serving production level for heroku
+gem 'unicorn'
+
 ruby "1.9.3"
 
