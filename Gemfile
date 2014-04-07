@@ -55,11 +55,15 @@ gem 'nifty-generators', group: :development
 
 gem "mocha", group: :test
 
+# for multi-table inheritance in rails 
+
+gem 'acts_as_relation', '~> 1.0'
+
 # for Heroku integration 
-gem 'rails_12factor', group: :production
+#gem 'rails_12factor', group: :production
 
 # for web serving production level for heroku
-gem 'unicorn'
+#gem 'unicorn'
 
-ruby "1.9.3"
+#ruby "1.9.3"
 
