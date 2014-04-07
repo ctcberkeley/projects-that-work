@@ -7,10 +7,10 @@ development:
   adapter: postgresql
   encoding: unicode
   database: ptw_db
-  # user: postgres
-  # pool: 5
-  # password: password
-  # host: localhost
+  user: postgres
+  pool: 5
+  password: password
+  host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

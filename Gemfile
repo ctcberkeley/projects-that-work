@@ -60,7 +60,6 @@ gem "mocha", group: :test
 gem 'acts_as_relation', '~> 1.0'
 
 # for Heroku integration 
-<<<<<<< .merge_file_WyS74A
 # gem 'rails_12factor', group: :production
 
 # # for web serving production level for heroku
