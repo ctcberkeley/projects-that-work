@@ -4,7 +4,13 @@ class ProjectsController < ApplicationController
   end
 
   def new
-  	@project = Project.new
+    if not current_user
+      redirect_to login_path, :notice => "Please Log-In as a Teacher to Create a Project"
+    elsif user_is_teacher
+  	 @project = Project.new
+    else
+      redirect_to root_path, :notice => "Only Teachers can Create New Projects"
+    end
   end
 
   def create

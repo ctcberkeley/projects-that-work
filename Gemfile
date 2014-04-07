@@ -56,10 +56,10 @@ gem 'nifty-generators', group: :development
 gem "mocha", group: :test
 
 # for Heroku integration 
-gem 'rails_12factor', group: :production
+# gem 'rails_12factor', group: :production
 
-# for web serving production level for heroku
-gem 'unicorn'
+# # for web serving production level for heroku
+# gem 'unicorn'
 
-ruby "1.9.3"
+# ruby "1.9.3"
 

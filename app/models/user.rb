@@ -4,5 +4,12 @@ class User < ActiveRecord::Base
     c.session_class = UserSession
     c.require_password_confirmation = false
     c.login_field = :email
+    validates_presence_of :role
+  end
+
+  ROLES = ["Teacher", "Student"]
+
+  def is_teacher
+  	return self.role == "Teacher"
   end
 end
