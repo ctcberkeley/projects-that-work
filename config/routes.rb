@@ -1,4 +1,5 @@
 ProjectsThatWork::Application.routes.draw do
+  resources :reviews
   get "home_controller/index"
   root 'home_controller#index'
   resources :users
