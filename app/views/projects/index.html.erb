@@ -1,4 +1,4 @@
-<h1>Available ppooopProjects</h1>
+<h1>Available Projects</h1>
 
   <%= form_tag(projects_path, :method => "get", class: "navbar-form", id: "search-form") do %>
     <div class="input-append">
@@ -10,7 +10,7 @@
   <% end %>
   <%= yield %>
 
-<table>
+<table class="table">
   <tr>
     <th>Name</th>
     <th>Description</th>
