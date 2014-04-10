@@ -1,6 +1,10 @@
 class ProjectsController < ApplicationController
   def index 
-	@projects = Project.all
+    if params[:search]
+      @projects = Project.search(params[:search])
+    else
+      @projects = Project.all
+    end
   end
 
   def new
@@ -20,7 +24,7 @@ class ProjectsController < ApplicationController
   end
 
   def show 
-	@project = Project.find(params[:id])
+	 @project = Project.find(params[:id])
   end
 
   private 

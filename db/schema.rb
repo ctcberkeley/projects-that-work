@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20140407223406) do
   end
 
   create_table "reviews", force: true do |t|
+    t.integer  "as_review_id"
+    t.string   "as_review_type"
     t.integer  "overallScore"
     t.integer  "planningScore"
     t.integer  "implementationScore"
