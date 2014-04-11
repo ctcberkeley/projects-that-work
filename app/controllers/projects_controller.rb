@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
   	@project = Project.new(project_params)
     @project.user_id = current_user.id
   	@project.save
+    current_user.projects.build(params[:project].permit[:user_id])
   	redirect_to projects_path
   end
 

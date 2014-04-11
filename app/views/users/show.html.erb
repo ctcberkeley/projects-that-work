@@ -1,12 +1,13 @@
 <h1><%= @user.first_name %>
   <%= @user.last_name %></h1>
 
-<h2>Profile
-  <% if current_user and current_user.id == @user.id %>
-    ( <%=link_to 'Edit Profile', edit_user_path(:current) %> )
-  <% end %>
+<h2>Profile</h2>
 
-</h2>
+<p>
+  <% if current_user and current_user.id == @user.id %>
+    <%=link_to 'Edit Profile', edit_user_path(:current) %>
+  <% end %>
+</p>
 
 <p>
   <strong> Name: </strong>
@@ -29,3 +30,21 @@
   <strong> Role: </strong>
   <%= @user.role %>
 </p>
+
+<h2>Projects</h2>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Dates</th>
+
+  </tr>
+<% @user.projects.each do |p| %>
+<tr>
+<td><%= link_to p.name, project_path(p) %></td>
+<td><%= p.description %></td>
+<td><%= p.startDate.strftime("%B %d, %Y") %> - <%= p.endDate.strftime("%B %d, %Y") %></td>
+</tr>
+<% end %>
+</table>
