@@ -35,4 +35,9 @@
   <%= @project.numStudents %>
 </p>
 
+<p>
+  <strong> School: </strong>
+  <%= @project.user.school.name %>
+</p>
+
 <%= link_to 'Back to Projects List', projects_path %>
