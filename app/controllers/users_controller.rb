@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def show
     if not current_user
-      redirect_to login_path, :notice => "Please Log-In to View Other Profiles"
+      redirect_to login_path, :notice => "Please Log-In to View Profiles"
     else
       @user = User.find(params[:id])
     end
