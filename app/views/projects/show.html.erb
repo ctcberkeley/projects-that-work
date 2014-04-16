@@ -35,4 +35,11 @@
   <%= @project.user.school.name %>
 </p>
 
+<p>
+  <% if current_user and user_is_teacher %>
+      <%= link_to 'Review this Project', new_review_path %>
+  <% end %>
+
+</p>
+
 <%= link_to 'Back to Projects List', projects_path %>
