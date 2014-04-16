@@ -1,3 +1,3 @@
 class TeacherReview < ActiveRecord::Base
-	acts_as :review
+	acts_as :review, :as => :reviewable
 end

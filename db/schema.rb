@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411074041) do
+ActiveRecord::Schema.define(version: 20140416114956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,15 +42,20 @@ ActiveRecord::Schema.define(version: 20140411074041) do
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "reviews", force: true do |t|
-    t.integer  "as_review_id"
-    t.string   "as_review_type"
     t.integer  "overallScore"
     t.integer  "planningScore"
     t.integer  "implementationScore"
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.integer  "reviewable_id"
+    t.string   "reviewable_type"
   end
+
+  add_index "reviews", ["project_id"], name: "index_reviews_on_project_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "schools", force: true do |t|
     t.string   "name"
@@ -95,9 +100,11 @@ ActiveRecord::Schema.define(version: 20140411074041) do
     t.datetime "updated_at"
     t.integer  "school_id"
     t.integer  "project_id"
+    t.integer  "review_id"
   end
 
   add_index "users", ["project_id"], name: "index_users_on_project_id", using: :btree
+  add_index "users", ["review_id"], name: "index_users_on_review_id", using: :btree
   add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 
 end

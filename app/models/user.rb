@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   belongs_to :school
   has_many :projects
+  has_many :reviews
+  has_many :student_reviews
+  has_many :teacher_reviews
 
   acts_as_authentic do |c|
     c.crypto_provider = Authlogic::CryptoProviders::Sha512

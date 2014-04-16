@@ -16,7 +16,7 @@
 </p>
 
 <p>
-  <strong> User Name: </strong>
+  <strong> Username: </strong>
   <%= @user.username%>
 </p>
 
@@ -45,6 +45,24 @@
 <td><%= link_to p.name, project_path(p) %></td>
 <td><%= p.description %></td>
 <td><%= p.startDate.strftime("%B %d, %Y") %> - <%= p.endDate.strftime("%B %d, %Y") %></td>
+</tr>
+<% end %>
+</table>
+
+<h2>Reviews</h2>
+
+<table class="table">
+  <tr>
+    <th>Project</th>
+    <th>Overall</th>
+    <th>Comments</th>
+
+  </tr>
+<% @user.reviews.each do |r| %>
+<tr>
+<td><%= r.project %></td>
+<td><%= r.overallScore %></td>
+<td><%= r.comment %></td>
 </tr>
 <% end %>
 </table>

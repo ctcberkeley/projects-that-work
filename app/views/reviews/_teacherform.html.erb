@@ -1,0 +1,17 @@
+<%= semantic_form_for @review, url: reviews_path do |f| %>
+    <%= f.inputs do %>
+      <%= f.input :project_id, :as => :select, :collection => @current_user.projects.all { |p| [p.name, p.id] }, :label => 'Project' %>
+      <%= f.input :overallScore, :as => :number, :label => 'Overall Score' %>
+      <%= f.input :planningScore, :as => :number, :label => 'Planning Score' %>
+      <%= f.input :implementationScore, :as => :number, :label => 'Implementation Score' %>
+
+      <%= f.input :educatorScore, :as => :number, :label => 'Educator Score' %>
+
+       <%= f.input :comment, :label => 'Comments', :as => :text, :input_html => { :maxlength => 300, :rows => 4, :spellcheck => true} 
+       %> 
+
+    <% end %>
+    <%= f.actions do %>
+      <%= f.action :submit, :as => :button, :label => 'Submit Review', url: reviews_path, button_html: {method: :create} %>
+    <% end %>
+<% end %>

@@ -18,6 +18,6 @@ private
 	end
 
 	def user_is_teacher
-		return @current_user.is_teacher
+		return current_user.is_teacher
 	end
 end
