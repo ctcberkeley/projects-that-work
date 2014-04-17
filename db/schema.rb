@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416114956) do
+ActiveRecord::Schema.define(version: 20140417234101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20140416114956) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "teacher_id"
   end
 
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+  add_index "projects", ["teacher_id"], name: "index_projects_on_teacher_id", using: :btree
 
   create_table "reviews", force: true do |t|
     t.integer  "as_review_id"
@@ -68,6 +68,13 @@ ActiveRecord::Schema.define(version: 20140416114956) do
     t.datetime "updated_at"
   end
 
+  create_table "student_projects", force: true do |t|
+    t.integer  "student_id", null: false
+    t.integer  "project_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "student_reviews", force: true do |t|
     t.integer  "learningScore"
     t.integer  "impactScore"
@@ -77,11 +84,29 @@ ActiveRecord::Schema.define(version: 20140416114956) do
     t.datetime "updated_at"
   end
 
+  create_table "students", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "students", ["user_id"], name: "index_students_on_user_id", using: :btree
+
   create_table "teacher_reviews", force: true do |t|
     t.integer  "educatorScore"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "teachers", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "project_id"
+  end
+
+  add_index "teachers", ["project_id"], name: "index_teachers_on_project_id", using: :btree
+  add_index "teachers", ["user_id"], name: "index_teachers_on_user_id", using: :btree
 
   create_table "user_sessions", force: true do |t|
     t.datetime "created_at"
@@ -101,11 +126,9 @@ ActiveRecord::Schema.define(version: 20140416114956) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
-    t.integer  "project_id"
     t.integer  "review_id"
   end
 
-  add_index "users", ["project_id"], name: "index_users_on_project_id", using: :btree
   add_index "users", ["review_id"], name: "index_users_on_review_id", using: :btree
   add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 

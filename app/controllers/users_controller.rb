@@ -5,16 +5,35 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    success = true
+
     if @user.save
-      redirect_to root_path, :notice => "Sign Up Successful"
+      @role 
+      if @user.is_teacher
+        @role = Teacher.new(teacher_params)
+      elsif @user.is_student
+        @role = Student.new(student_params)
+      @role.user_id = (User.find_by email: @user.email).id
+      end
+      if @role.save
+        redirect_to root_path, :notice => "Sign Up Successful"
+      else
+        sucess = false
+      end
     else
+      success = false
+    end
+
+    if not success
       render :action => 'new'
     end
   end
 
+
   def edit
     @user = current_user
   end
+
 
   def show
     if not current_user
@@ -23,6 +42,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
   end
+
 
   def update
     @user = current_user
@@ -33,8 +53,17 @@ class UsersController < ApplicationController
     end
   end
 
+
   private 
     def user_params
       params.require(:user).permit(:first_name, :last_name, :username, :password, :email, :role, :school_id)
+    end
+
+    def teacher_params
+      params.require(:user).permit(:user_id)
+    end
+
+    def student_params
+      params.require(:user).permit(:user_id)
     end
 end
