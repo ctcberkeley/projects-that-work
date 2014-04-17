@@ -1,16 +1,17 @@
 ProjectsThatWork::Application.routes.draw do
+  
   resources :reviews
   resources :teacher_reviews
   resources :student_reviews
-  get "home_controller/index"
-  root 'home_controller#index'
+
   resources :users
-  get "projects/new"
+
   resources :projects
 
   get "login" => 'user_sessions#new', as: :login
   get "logout" => "user_sessions#destroy", as: :logout
   post "loginAttempt" => 'user_sessions#create', as: :create_session
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
