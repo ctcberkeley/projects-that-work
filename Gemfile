@@ -67,4 +67,5 @@ gem 'acts_as_relation', '~> 1.0'
 
 # ruby "1.9.3"
 
-
+# Use Twitter Bootstrap
+gem 'bootstrap-sass', '~> 3.1.1.0'
