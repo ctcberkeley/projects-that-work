@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       @role 
       if @user.is_teacher
         @role = Teacher.new(teacher_params)
-      else
+      elsif @user.is_student
         @role = Student.new(student_params)
       @role.user_id = (User.find_by email: @user.email).id
       end
@@ -29,9 +29,11 @@ class UsersController < ApplicationController
     end
   end
 
+
   def edit
     @user = current_user
   end
+
 
   def show
     if not current_user
@@ -41,6 +43,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   def update
     @user = current_user
     if @user.update_attributes(user_params)
@@ -49,6 +52,7 @@ class UsersController < ApplicationController
       render :action => 'edit'
     end
   end
+
 
   private 
     def user_params

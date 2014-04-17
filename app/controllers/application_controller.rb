@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-helper_method :current_user, :current_user_session, :user_is_teacher
+helper_method :current_user, :current_user_session, :user_is_teacher, :user_is_student
 
 private
 
@@ -19,5 +19,9 @@ private
 
 	def user_is_teacher
 		return current_user.is_teacher
+	end
+
+	def user_is_student
+		return current_user.is_student
 	end
 end

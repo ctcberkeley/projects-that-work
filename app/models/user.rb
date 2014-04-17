@@ -18,4 +18,17 @@ class User < ActiveRecord::Base
   def is_teacher
   	return self.role == "Teacher"
   end
+
+  def is_student
+    return self.role == "Student"
+  end
+
+  def get_teacher_or_student
+    if is_teacher
+      return Teacher.get_teacher(id)
+    elsif is_student
+      return Student.get_student(id)
+    end
+  end
+
 end
