@@ -19,9 +19,10 @@ class ProjectsController < ApplicationController
 
   def create
   	@project = Project.new(project_params)
-    @project.user_id = current_user.id
+    @teacher = Teacher.get_teacher(current_user.id)
+    @project.teacher_id = @teacher.id
   	@project.save
-    current_user.projects.build(params[:project].permit[:user_id])
+    @teacher.projects.build(params[:project].permit[:teacher_id])
   	redirect_to projects_path
   end
 
