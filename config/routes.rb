@@ -7,9 +7,8 @@ ProjectsThatWork::Application.routes.draw do
   resources :reviews
   resources :teacher_reviews
   resources :student_reviews
-
   resources :users
-
+  resources :schools
   resources :projects
 
   get "login" => 'user_sessions#new', as: :login

@@ -1,0 +1,24 @@
+<h1>Add School</h1>
+<% if @school.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@school.errors.count, "error") %> Prevented Sign Up:</h2>
+
+    <ul>
+      <% @school.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= semantic_form_for @school do |f| %>
+    <%= f.inputs do %>
+      <%= f.input :name, :label => 'School Name' %>
+      <%= f.input :city, :label => 'City' %>
+      <%= f.input :state, :label => 'State' %>
+      <%= f.input :zip, :label => 'Zip' %>
+    <% end %>
+    <%= f.actions do %>
+      <%= f.action :submit, :as => :button, :label => 'Add School' %>
+    <% end %>
+<% end %>
