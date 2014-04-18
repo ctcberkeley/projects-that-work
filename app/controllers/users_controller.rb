@@ -13,8 +13,8 @@ class UsersController < ApplicationController
         @role = Teacher.new(teacher_params)
       elsif @user.is_student
         @role = Student.new(student_params)
-      @role.user_id = (User.find_by email: @user.email).id
       end
+      @role.user_id = (User.find_by email: @user.email).id
       if @role.save
         redirect_to root_path, :notice => "Sign Up Successful"
       else
