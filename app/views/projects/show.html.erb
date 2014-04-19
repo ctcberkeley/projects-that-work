@@ -1,45 +1,51 @@
-<h1><%=@project.name%></h1>
+<div class="container">
+  <div class="row">
+    <h1><%=@project.name%></h1>
+  </div>
+  <div class="row">
+    <p>
+      <strong> Description: </strong>
+      <%= @project.description %>
+    </p>
 
-<p>
-  <strong> Description: </strong>
-  <%= @project.description %>
-</p>
+    <p>
+      <strong> Start: </strong>
+      <%= @project.startDate %>
+    </p>
 
-<p>
-  <strong> Start: </strong>
-  <%= @project.startDate %>
-</p>
+    <p>
+      <strong> End: </strong>
+      <%= @project.endDate %>
+    </p>
 
-<p>
-  <strong> End: </strong>
-  <%= @project.endDate %>
-</p>
+    <p>
+      <strong> Recommended grade level: </strong>
+      <%= @project.grade %>
+    </p>
 
-<p>
-  <strong> Recommended grade level: </strong>
-  <%= @project.grade %>
-</p>
+    <p>
+      <strong> Course: </strong>
+      <%= @project.course %>
+    </p>
 
-<p>
-  <strong> Course: </strong>
-  <%= @project.course %>
-</p>
+    <p>
+      <strong> Recommended # students: </strong>
+      <%= @project.numStudents %>
+    </p>
 
-<p>
-  <strong> Recommended # students: </strong>
-  <%= @project.numStudents %>
-</p>
+    <p>
+      <strong> School: </strong>
+      <%= @project.teacher.school.name %>
+    </p>
 
-<p>
-  <strong> School: </strong>
-  <%= @project.teacher.school.name %>
-</p>
+    <p>
+      <% if current_user and user_is_teacher %>
+          <%= link_to 'Review this Project', new_review_path %>
+      <% end %>
 
-<p>
-  <% if current_user and user_is_teacher %>
-      <%= link_to 'Review this Project', new_review_path %>
-  <% end %>
+    </p>
+    <%= link_to 'Back to Projects List', projects_path %>
+  </div>
+</div>
 
-</p>
 
-<%= link_to 'Back to Projects List', projects_path %>
