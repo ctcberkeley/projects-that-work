@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <h1><%=@projectclass.id%></h1>
+  </div>
+  <div class="row">
+ 
+  <table class="table">
+  <tr>
+    <th>Teacher</th>
+    <th>Email</th>
+
+  </tr>
+<% @projectclass.teachers.each do |p| %>
+<tr>
+<td><%= p.first_name + p.last_name %></td>
+<td><%= p.email %></td>
+</tr>
+<% end %>
+</table>
+
+   <table class="table">
+  <tr>
+    <th>Student</th>
+    <th>Email</th>
+
+  </tr>
+<% @projectclass.students.each do |p| %>
+<tr>
+<td><%= p.first_name + p.last_name %></td>
+<td><%= p.email %></td>
+</tr>
+<% end %>
+</table>
+  
+      <% if current_user and user_is_teacher %>
+          <%= link_to 'Review this Project', new_review_path %>
+      <% end %>
+
+    </p>
+    <%= link_to 'Back to Projects List', projects_path %>
+  </div>
+</div>
+
+

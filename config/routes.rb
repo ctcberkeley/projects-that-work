@@ -9,7 +9,9 @@ ProjectsThatWork::Application.routes.draw do
   resources :student_reviews
   resources :users
   resources :schools
-  resources :projects
+  resources :projects do 
+    resources :project_classes, :as => "class"
+  end
 
   get "login" => 'user_sessions#new', as: :login
   get "logout" => "user_sessions#destroy", as: :logout

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <h1>New Project Class</h1>
+  </div>
+  <div class="row">
+    <%= semantic_form_for @projectclass, url: project_class_index_path do |p|%>
+      <%= p.inputs do %>
+        <%= p.input :students, :as => :text, :label => 'Add Students By Email', :hint => 'Students who have not yet registered are emailed invitation to sign-up to Projects That Work. Enter a space to add another email.',
+        :input_html => {:rows => 4, :value => ""} %>
+        <%= p.input :password, :label => 'Choose Class Password', :as => :password, :hint => 'Students will enter password to confirm joining the Project Class' %>
+      <% end %>
+      <%= p.actions do %>
+        <%= p.action :submit, :as => :button, :url => project_class_index_path, :label => 'Create Project Class' %>
+        <%= p.action :cancel, :as => :link,  :label => "Cancel", :url => projects_path %>
+      <% end %> 
+    <% end %>
+  </div>
+
+</div>

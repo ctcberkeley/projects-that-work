@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+School.create!(name: "Berkeley High School", city: "Berkeley", state: "CA", zip:"94709")
+School.create!(name:  "Richmond High School", city: "Richmond", state: "CA", zip:"94806")

@@ -39,6 +39,13 @@
     </p>
 
     <p>
+
+      <% if current_user and user_is_teacher %>
+        <%= link_to 'Create Project Class', new_project_class_path(@project.id) %>
+      <% end %>
+    </p>
+
+    <p>
       <% if current_user and user_is_teacher %>
           <%= link_to 'Review this Project', new_review_path %>
       <% end %>

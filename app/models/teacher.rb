@@ -1,6 +1,7 @@
 class Teacher < ActiveRecord::Base
 	has_one :user
-	has_many :projects
+	has_many :projects, :dependent => :destroy
+	has_many :project_classes, :dependent => :destroy
 
 	def user
 		(User.find_by id: self.user_id)

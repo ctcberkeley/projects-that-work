@@ -1,8 +1,7 @@
 class Student < ActiveRecord::Base
 	has_one :user
-
-	has_many :student_projects
-	has_many :projects, :through => :student_projects
+	has_many :student_project_classes
+	has_many :project_classes, :through => :student_project_classes
 	
 	def user
 		(User.find_by id: self.user_id)
@@ -22,5 +21,9 @@ class Student < ActiveRecord::Base
 
 	def self.get_student(id)
 		Student.find_by user_id: id
+	end
+
+	def self.get_student_by_email(email)
+		User.find_by email: email
 	end
 end

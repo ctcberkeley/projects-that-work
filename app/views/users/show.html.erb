@@ -60,7 +60,7 @@
   </tr>
 <% @user.reviews.each do |r| %>
 <tr>
-<td><%= r.project %></td>
+<td><%= link_to r.project.name, project_path(r) %></td>
 <td><%= r.overallScore %></td>
 <td><%= r.comment %></td>
 </tr>
