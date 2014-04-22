@@ -1,6 +1,6 @@
 <%= semantic_form_for @review do |f| %>
     <%= f.inputs do %>
-      <%= f.input :project_id, :as => :select, :collection => @current_user.projects.all { |p| [p.name, p.id] }, :label => 'Project' %>
+      <%= f.input :project_id, :as => :select, :collection => @current_role.project_classes.all { |p| [p.project.name, p.project.id] }, :label => 'Project' %>
       <%= f.input :overallScore, :as => :number, :label => 'Overall Score' %>
       <%= f.input :planningScore, :as => :number, :label => 'Planning Score' %>
       <%= f.input :implementationScore, :as => :number, :label => 'Implementation Score' %>

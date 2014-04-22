@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
   		redirect_to root_path
   	else
   		@current_user = current_user
+      @current_role = current_user.get_teacher_or_student
   		@review
   		if user_is_teacher
   			@review = TeacherReview.new
@@ -19,6 +20,7 @@ class ReviewsController < ApplicationController
   def create
   	@review
   	@current_user = current_user
+    @current_role = current_user.get_teacher_or_student
   	if user_is_teacher
   		@review = TeacherReview.new(teacherReview_params)
   		@review.user_id = current_user.id
