@@ -25,7 +25,7 @@
      
       <% @projectclasses.each do |projectclass| %>
         <tr>
-          <td><%= link_to projectclass.id, projectclass %></td>
+          <td><%= link_to projectclass.id, project_class_path(@project,projectclass) %></td>
          
         </tr>
       <% end %>

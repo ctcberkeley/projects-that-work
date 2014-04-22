@@ -10,12 +10,11 @@
     <th>Email</th>
 
   </tr>
-<% @projectclass.teachers.each do |p| %>
 <tr>
-<td><%= p.first_name + p.last_name %></td>
-<td><%= p.email %></td>
+<td><%= @teacher.get_name() %></td>
+<td><%= @teacher.user.email %></td>
 </tr>
-<% end %>
+
 </table>
 
    <table class="table">
@@ -26,8 +25,8 @@
   </tr>
 <% @projectclass.students.each do |p| %>
 <tr>
-<td><%= p.first_name + p.last_name %></td>
-<td><%= p.email %></td>
+<td><%= p.get_name() %></td>
+<td><%= p.user.email %></td>
 </tr>
 <% end %>
 </table>

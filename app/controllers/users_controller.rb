@@ -16,8 +16,8 @@ class UsersController < ApplicationController
       end
       @role.user_id = User.by_email(@user.email).id
       if @role.save
-        redirect_to root_path, 
-        flash[:success] => "Welcome to Projects That Work!"
+        redirect_to root_path 
+        flash[:success] = "Welcome to Projects That Work!"
       else
         sucess = false
       end

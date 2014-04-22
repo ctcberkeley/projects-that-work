@@ -22,4 +22,9 @@ class Teacher < ActiveRecord::Base
 	def self.get_teacher(id)
 		Teacher.find_by user_id: id
 	end
+
+	def get_name()
+		user = self.user
+		return user.first_name + " " + user.last_name
+	end
 end

@@ -31,23 +31,27 @@
   <%= @user.role %>
 </p>
 
-<h2>Projects</h2>
+<% if @user.is_teacher %>
 
-<table class="table">
+  <h2>Projects</h2>
+
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Dates</th>
+
+    </tr>
+  <% @user.get_teacher_or_student.projects.each do |p| %>
   <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Dates</th>
-
+  <td><%= link_to p.name, project_path(p) %></td>
+  <td><%= p.description %></td>
+  <td><%= p.startDate.strftime("%B %d, %Y") %> - <%= p.endDate.strftime("%B %d, %Y") %></td>
   </tr>
-<% @user.get_teacher_or_student.projects.each do |p| %>
-<tr>
-<td><%= link_to p.name, project_path(p) %></td>
-<td><%= p.description %></td>
-<td><%= p.startDate.strftime("%B %d, %Y") %> - <%= p.endDate.strftime("%B %d, %Y") %></td>
-</tr>
+  <% end %>
+  </table>
+
 <% end %>
-</table>
 
 <h2>Reviews</h2>
 

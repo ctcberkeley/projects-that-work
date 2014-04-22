@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def by_email(email)
+  def self.by_email(email)
     User.find_by email: email
   end
 
