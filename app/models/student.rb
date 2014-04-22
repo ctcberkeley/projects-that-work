@@ -27,8 +27,6 @@ class Student < ActiveRecord::Base
 		user = (User.find_by email: email)
 		if user
 			self.get_student user.id
-		else
-			"no student email"
 		end
 	end
 
