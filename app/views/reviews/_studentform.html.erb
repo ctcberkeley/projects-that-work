@@ -16,5 +16,6 @@
     <% end %>
     <%= f.actions do %>
       <%= f.action :submit, :as => :button, :label => 'Submit Review' %>
+      <%= f.action :cancel, :as => :link,  :label => "Cancel", :url => reviews_path %>
     <% end %>
 <% end %>

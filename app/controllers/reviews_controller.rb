@@ -30,7 +30,8 @@ class ReviewsController < ApplicationController
   	end
   	
     if @review.save
-      redirect_to root_path, :notice => "Review Created Successfully"
+      redirect_to root_path
+      flash[:success] = "Review Created Successfully"
     else
       render :action => 'new'
     end

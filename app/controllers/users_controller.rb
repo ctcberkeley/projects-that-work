@@ -14,9 +14,10 @@ class UsersController < ApplicationController
       elsif @user.is_student
         @role = Student.new(student_params)
       end
-      @role.user_id = (User.find_by email: @user.email).id
+      @role.user_id = User.by_email(@user.email).id
       if @role.save
-        redirect_to root_path, :notice => "Sign Up Successful"
+        redirect_to root_path, 
+        flash[:success] => "Welcome to Projects That Work!"
       else
         sucess = false
       end

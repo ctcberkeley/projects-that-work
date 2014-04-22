@@ -13,7 +13,8 @@ class ProjectClassesController < ApplicationController
     elsif user_is_teacher
   	 @projectclass = ProjectClass.new()
     else
-      redirect_to root_path, :notice => "Only Teachers can Create New Project Classes"
+      redirect_to root_path, 
+      flash[:notice] = "Only Teachers can Create New Project Classes"
     end
   end
 
@@ -37,8 +38,10 @@ class ProjectClassesController < ApplicationController
     @project = Project.get_project(1)
   	@project.project_classes.build(params[:project_class].permit[:project_id])
     @teacher.project_classes.build(params[:project_class].permit[:teacher_id])
-  	@projectclass.save
-    redirect_to project_class_index_path
+  	if @projectclass.save
+      redirect_to project_class_index_path
+      flash[:success] = "Project Class created successfully"
+    end
   end
 
   def show 
