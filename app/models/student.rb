@@ -24,7 +24,12 @@ class Student < ActiveRecord::Base
 	end
 
 	def self.get_student_by_email(email)
-		self.get_student (User.find_by email: email).id
+		user = (User.find_by email: email)
+		if user
+			self.get_student user.id
+		else
+			"no student email"
+		end
 	end
 
 	def get_name()

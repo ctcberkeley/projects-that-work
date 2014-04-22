@@ -51,7 +51,6 @@ class ProjectClassesController < ApplicationController
   def show 
 	 @projectclass = ProjectClass.includes(:students).find(params[:id])
    @teacher = @projectclass.teacher
-
   end
 
   private 
