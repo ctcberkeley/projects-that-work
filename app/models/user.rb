@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     c.session_class = UserSession
     c.require_password_confirmation = false
     c.login_field = :email
-    validates_presence_of :role
+    validates_presence_of :role, :school, :first_name, :last_name, :username
   end
 
   ROLES = ["Teacher", "Student"]
