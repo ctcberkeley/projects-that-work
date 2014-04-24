@@ -7,7 +7,7 @@ class SchoolsController < ApplicationController
 	def create
 		@school = School.new(school_params)
 		if @school.save
-			redirect_to new_user_path, 
+			redirect_to new_user_path
 			flash[:success] = "Your school was successfully added!"
 		else
 			render :action => 'new'

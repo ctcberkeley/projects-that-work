@@ -63,7 +63,7 @@ gem 'acts_as_relation', '~> 1.0'
  gem 'rails_12factor', group: :production
 
 # # for web serving production level for heroku
- gem 'unicorn', group: :production
+ # gem 'unicorn', group: :production
 
  #ruby "1.9.3"
 
