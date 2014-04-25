@@ -13,9 +13,7 @@ ProjectsThatWork::Application.routes.draw do
     resources :project_classes, :as => "class"
   end
 
-  get "login" => 'user_sessions#new', as: :login
-  get "logout" => "user_sessions#destroy", as: :logout
-  post "loginAttempt" => 'user_sessions#create', as: :create_session
+  resources :user_sessions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

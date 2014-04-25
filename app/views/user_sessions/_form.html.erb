@@ -1,10 +1,21 @@
-<%= semantic_form_for @user_session, :url => create_session_path do |f| %>
-	Don't Have an Account Yet? <%= link_to "Sign Up Here", new_user_path %>
-    <%= f.inputs do %>
-      <%= f.input :email %>
-      <%= f.input :password, :as => :password%>
-    <% end %>
-    <%= f.actions do %>
-      <%= f.action :submit, :as => :button, :label => 'Login' %>
-    <% end %>
+<%= form_for @user_session do |f| %>
+  <% if @user_session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited:</h2>
+      <ul>
+        <% @user_session.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </p>
+  <%= f.submit "Login" %>
 <% end %>
