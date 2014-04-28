@@ -1,23 +1,50 @@
-<div class="container">
-  <div class="row">
-    <h1>New Project</h1>
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>New Project</h1>
+        <%= form_for @project do |f| %>
+          <% if @project.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+              <ul>
+                <% @project.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :description %>
+            <%= f.text_area :description, class: "form-control", rows: 4 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :startDate, "Start Date" %>
+            <%= f.date_select :startDate %>
+          </div>
+          <div class="form-group">
+            <%= f.label :endDate, "End Date" %>
+            <%= f.date_select :endDate %>
+          </div>
+          <div class="form-group">
+            <%= f.label :grade, "Grade Level" %>
+            <%= f.number_field :grade, min: 6, max: 12, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :course, "Relevant School Subjects" %>
+            <%= f.number_field :course, min: 6, max: 12, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :numStudents, "Number of Students" %>
+            <%= f.number_field :numStudents, min: 5, step: 5, class: "form-control" %>
+          </div>
+          <%= f.submit :class => "btn btn-default" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <%= semantic_form_for @project, url: projects_path do |p|%>
-      <%= p.inputs do %>
-        <%= p.input :name, :label => 'Title' %>
-        <%= p.input :description, :label => 'Description', :hint => 'A broad high-level overview of the project', :as => :text, :input_html => { :maxlength => 300, :rows => 4, :spellcheck => true} %>
-        <%= p.input :startDate, :as => :date_select %>
-        <%= p.input :endDate, :as => :date_select %>
-        <%= p.input :grade, :label => 'Grade Level', :hint => 'Recommended Grade Level to participate in project', :as => :number, :min => 6, :max => 12 %>
-        <%= p.input :course, :label => 'Course', :hint => 'Most relevant subjects this project will cover' %>
-        <%= p.input :numStudents, :label => 'Class Size', :hint => 'Recommended number of students to participate in project', :as => :number, :min => 5, :step => 5 %>
-      <% end %>
-      <%= p.actions do %>
-        <%= p.action :submit, :as => :button, :url => projects_path, :label => 'Create Project' %>
-        <%= p.action :cancel, :as => :link,  :label => "Cancel", :url => projects_path %>
-      <% end %> 
-    <% end %>
-  </div>
-
 </div>

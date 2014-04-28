@@ -1,62 +1,52 @@
-<div class="container">
-  <div class="row">
+<div class="section">
+  <div class="container">
     <h1><%=@project.name%></h1>
-  </div>
-  <div class="row">
     <p>
-      <strong> Average Rating: </strong>
+      <strong>Average Rating:</strong>
       <%= @average_score %>
     </p>
     <p>
-      <strong> Description: </strong>
+      <strong>Description:</strong>
       <%= @project.description %>
     </p>
 
     <p>
-      <strong> Start: </strong>
+      <strong>Start:</strong>
       <%= @project.startDate %>
     </p>
 
     <p>
-      <strong> End: </strong>
+      <strong>End:</strong>
       <%= @project.endDate %>
     </p>
 
     <p>
-      <strong> Recommended grade level: </strong>
+      <strong>Recommended Grade Level:</strong>
       <%= @project.grade %>
     </p>
 
     <p>
-      <strong> Course: </strong>
+      <strong>Relevant School Subjects:</strong>
       <%= @project.course %>
     </p>
 
     <p>
-      <strong> Recommended # students: </strong>
+      <strong> Recommended Number of Students:</strong>
       <%= @project.numStudents %>
     </p>
 
     <p>
-      <strong> School: </strong>
+      <strong>School:</strong>
       <%= @project.teacher.school.name %>
     </p>
-
-    <p>
-
-      <% if current_user and user_is_teacher %>
-        <%= link_to 'Create Project Class', new_project_class_path(@project.id) %>
-      <% end %>
-    </p>
-
     <p>
       <% if current_user and user_is_teacher %>
-          <%= link_to 'Review this Project', new_review_path %>
+        <%= link_to "Create Project Class", new_project_class_path(@project.id), class: "btn btn-primary" %>
       <% end %>
-
+      <% if current_user and user_is_teacher %>
+          <%= link_to "Create Review", new_review_path, class: "btn btn-default" %>
+      <% end %>
     </p>
-    <%= link_to 'Back to Projects List', projects_path %>
+    <%= link_to "Back to Projects List", projects_path %>
   </div>
 </div>
-
-
