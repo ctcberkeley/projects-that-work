@@ -1,72 +1,58 @@
-<h1><%= @user.first_name %>
-  <%= @user.last_name %></h1>
-
-<h2>Profile</h2>
-
-<p>
-  <% if current_user and current_user.id == @user.id %>
-    <%=link_to 'Edit Profile', edit_user_path(:current) %>
-  <% end %>
-</p>
-
-<p>
-  <strong> Name: </strong>
-  <%= @user.first_name %>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong> Username: </strong>
-  <%= @user.username%>
-</p>
-
-
-<p>
-  <strong> School: </strong>
-  <%= @user.school.name %>
-</p>
-
-<p>
-  <strong> Role: </strong>
-  <%= @user.role %>
-</p>
-
-<% if @user.is_teacher %>
-
-  <h2>Projects</h2>
-
-  <table class="table">
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Dates</th>
-
-    </tr>
-  <% @user.get_teacher_or_student.projects.each do |p| %>
-  <tr>
-  <td><%= link_to p.name, project_path(p) %></td>
-  <td><%= p.description %></td>
-  <td><%= p.startDate.strftime("%B %d, %Y") %> - <%= p.endDate.strftime("%B %d, %Y") %></td>
-  </tr>
-  <% end %>
-  </table>
-
-<% end %>
-
-<h2>Reviews</h2>
-
-<table class="table">
-  <tr>
-    <th>Project</th>
-    <th>Overall</th>
-    <th>Comments</th>
-
-  </tr>
-<% @user.reviews.each do |r| %>
-<tr>
-<td><%= link_to r.project.name, project_path(r) %></td>
-<td><%= r.overallScore %></td>
-<td><%= r.comment %></td>
-</tr>
-<% end %>
-</table>
+<div class="section">
+  <div class="container">
+    <h2>Profile</h2>
+    <p>
+      <% if current_user and current_user.id == @user.id %>
+        <%=link_to 'Edit Profile', edit_user_path(:current) %>
+      <% end %>
+    </p>
+    <p>
+      <strong>Name:</strong>
+      <%= @user.first_name %> <%= @user.last_name %>
+    </p>
+    <p>
+      <strong>Username:</strong>
+      <%= @user.username%>
+    </p>
+    <p>
+      <strong>School:</strong>
+      <%= @user.school.name %>
+    </p>
+    <p>
+      <strong>Role:</strong>
+      <%= @user.role %>
+    </p>
+    <% if @user.is_teacher %>
+      <h2>Projects</h2>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Dates</th>
+        </tr>
+        <% @user.get_teacher_or_student.projects.each do |p| %>
+          <tr>
+            <td><%= link_to p.name, project_path(p) %></td>
+            <td><%= p.description %></td>
+            <td><%= p.startDate.strftime("%B %d, %Y") %> - <%= p.endDate.strftime("%B %d, %Y") %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+    <h2>Reviews</h2>
+    <table class="table">
+      <tr>
+        <th>Project</th>
+        <th>Overall</th>
+        <th>Comments</th>
+      </tr>
+      <% @user.reviews.each do |r| %>
+        <tr>
+          <td><%= link_to r.project.name, project_path(r) %></td>
+          <td><%= r.overallScore %></td>
+          <td><%= r.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

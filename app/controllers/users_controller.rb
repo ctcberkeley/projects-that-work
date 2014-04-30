@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  
   def new
     @user = User.new
   end
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
         redirect_to root_path 
         flash[:success] = "Welcome to Projects That Work!"
       else
-        sucess = false
+        success = false
       end
     else
       success = false
@@ -30,11 +31,9 @@ class UsersController < ApplicationController
     end
   end
 
-
   def edit
     @user = current_user
   end
-
 
   def show
     if not current_user
@@ -44,7 +43,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   def update
     @user = current_user
     if @user.update_attributes(user_params)
@@ -53,7 +51,6 @@ class UsersController < ApplicationController
       render :action => 'edit'
     end
   end
-
 
   private 
     def user_params
