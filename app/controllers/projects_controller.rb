@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
 
   def new
     if not current_user
-      redirect_to login_path, 
+      redirect_to new_user_session_path, 
       flash[:notice] = "Please login as a teacher to create a project"
     elsif user_is_teacher
       @project = Project.new

@@ -11,10 +11,10 @@ class ProjectClassesController < ApplicationController
 
   def new
     if not current_user
-      redirect_to login_path, 
+      redirect_to new_user_session_path 
       flash[:notice] = "Please Log-In as a Teacher to Create a Project Class"
     elsif user_is_teacher
-  	 @projectclass = ProjectClass.new()
+      @projectclass = ProjectClass.new
     else
       redirect_to root_path, 
       flash[:notice] = "Only Teachers can Create New Project Classes"
@@ -43,8 +43,8 @@ class ProjectClassesController < ApplicationController
           flash[:notice] = "no student with " + email + " found"
         end 
       end
-    redirect_to project_class_index_path
-    flash[:success] = "Project Class created successfully"  
+      redirect_to project_class_index_path
+      flash[:success] = "Project Class created successfully"  
     end
   end
 

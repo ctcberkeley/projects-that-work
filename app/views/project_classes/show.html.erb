@@ -1,43 +1,36 @@
-<div class="container">
-  <div class="row">
-    <h1><%=@projectclass.id%></h1>
-  </div>
-  <div class="row">
- 
-  <table class="table">
-  <tr>
-    <th>Teacher</th>
-    <th>Email</th>
-
-  </tr>
-<tr>
-<td><%= @teacher.get_name() %></td>
-<td><%= @teacher.user.email %></td>
-</tr>
-
-</table>
-
-   <table class="table">
-  <tr>
-    <th>Student</th>
-    <th>Email</th>
-
-  </tr>
-<% @projectclass.students.each do |p| %>
-<tr>
-<td><%= p.get_name() %></td>
-<td><%= p.user.email %></td>
-</tr>
-<% end %>
-</table>
-  
-      <% if current_user and user_is_teacher %>
-          <%= link_to 'Review this Project', new_review_path %>
-      <% end %>
-
+<div class="section">
+  <div class="container">
+    <h1>Project Class <%=@projectclass.id%></h1>   
+    <p>
+      <strong>Teacher:</strong>
+      <%= @teacher.get_name %>
     </p>
-    <%= link_to 'Back to Projects List', projects_path %>
+    <p>
+      <strong>Email:</strong>
+      <%= @teacher.user.email %>
+    </p>
+    <h3>Students</h3>
+    <table class="table">
+      <tr>
+        <th>Student</th>
+        <th>Email</th>
+      </tr>
+      <% @projectclass.students.each do |p| %>
+        <tr>
+          <td><%= p.get_name() %></td>
+          <td><%= p.user.email %></td>
+        </tr>
+      <% end %>
+    </table>
+      
+    <% if current_user and user_is_teacher %>
+      <p>
+        <%= link_to 'Review this Project', new_review_path, class: "btn btn-primary" %>
+      </p>
+    <% end %>
+
+    <p>
+      <%= link_to 'Back to Projects List', projects_path %>
+    </p>
   </div>
 </div>
-
-
