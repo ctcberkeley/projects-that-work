@@ -5,8 +5,6 @@ ProjectsThatWork::Application.routes.draw do
   get '/contact', to: 'pages#contact'
 
   resources :reviews
-  resources :teacher_reviews
-  resources :student_reviews
   resources :users
   resources :schools
   resources :projects do 

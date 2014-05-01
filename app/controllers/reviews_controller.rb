@@ -1,56 +1,45 @@
 class ReviewsController < ApplicationController
-  def edit
-  end
 
   def new
-  	if not current_user
-  		redirect_to root_path
-  	else
-  		@current_user = current_user
-      @current_role = current_user.get_teacher_or_student
-  		@review
-  		if user_is_teacher
-  			@review = TeacherReview.new
-  		else 
-  			@review = StudentReview.new
-  		end	
-	end
+    if current_user
+      @user = current_user.get_teacher_or_student
+      if user_is_teacher
+        @review = TeacherReview.new
+      else 
+        @review = StudentReview.new
+      end
+    else
+      redirect_to root_path
+      flash[:notice] = "You must be logged in to review a project"
+    end
   end
 
   def create
-  	@review
-  	@current_user = current_user
-    @current_role = current_user.get_teacher_or_student
-  	if user_is_teacher
-  		@review = TeacherReview.new(teacherReview_params)
-  		@review.user_id = current_user.id
-  	current_user.reviews.build(params[:teacher_review].permit[:user_id])
-  	else
-  		@review = StudentReview.new(studentReview_params)
-  		@review.user_id = current_user.id
-  	current_user.reviews.build(params[:student_review].permit[:user_id])
-  	end
-  	
+    @user = current_user.get_teacher_or_student
+    if user_is_teacher
+      @review = TeacherReview.new(teacher_review_params)
+      @review.user_id = current_user.id
+      current_user.reviews.build(params[:teacher_review].permit[:user_id])
+    else
+      @review = StudentReview.new(student_review_params)
+      @review.user_id = current_user.id
+      current_user.reviews.build(params[:student_review].permit[:user_id])
+    end
+
     if @review.save
       redirect_to root_path
-      flash[:success] = "Review Created Successfully"
+      flash[:success] = "Review created successfully"
     else
       render :action => 'new'
     end
   end
 
-  def delete
-  end
-
-  def show
-  end
-
-   private 
-    def teacherReview_params
+  private 
+    def teacher_review_params
       params.require(:teacher_review).permit(:project_id, :overallScore, :planningScore, :implementationScore, :educatorScore, :comment)
     end
 
-     def studentReview_params
+    def student_review_params
       params.require(:student_review).permit(:project_id, :overallScore, :planningScore, :implementationScore, :learningScore, :repeatabilityScore, :enjoyabilityScore, :comment)
     end
 end

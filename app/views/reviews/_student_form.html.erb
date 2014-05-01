@@ -1,0 +1,45 @@
+<%= form_for @review, url: reviews_path do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <ul>
+        <% @review.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :project_id, "Project" %>
+    <%= f.select :project_id, @user.projects.all.collect { |p| [ p.name, p.id ] }, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :overallScore %>
+    <%= f.number_field :overallScore, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :planningScore %>
+    <%= f.number_field :planningScore, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :implementationScore %>
+    <%= f.number_field :implementationScore, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :learningScore %>
+    <%= f.number_field :learningScore, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :enjoyabilityScore %>
+    <%= f.number_field :enjoyabilityScore, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :repeatabilityScore %>
+    <%= f.number_field :repeatabilityScore, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :comment, "Comments" %>
+    <%= f.text_area :comment, class: "form-control", rows: 4 %>
+  </div>
+  <%= f.submit "Submit Review", :class => "btn btn-default" %>
+<% end %>

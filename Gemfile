@@ -44,9 +44,6 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# for making simple code for forms and easy stylesheets 
-gem 'formtastic'
-
 #gem student and teacher user registration account tracking 
 gem 'authlogic'
 
