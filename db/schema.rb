@@ -55,8 +55,6 @@ ActiveRecord::Schema.define(version: 20140420230603) do
   add_index "projects", ["teacher_id"], name: "index_projects_on_teacher_id", using: :btree
 
   create_table "reviews", force: true do |t|
-    t.integer  "as_review_id"
-    t.string   "as_review_type"
     t.integer  "overallScore"
     t.integer  "planningScore"
     t.integer  "implementationScore"
