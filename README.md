@@ -6,7 +6,7 @@ This application is intended to provide teachers with a means to post service-or
 
 Copy over the template `database.yml` and fill it in with the necessary information for your local database setup.
 
-    cp config/template/database.yml config
+    cp config/template/database.yml config/
 
 Create the database.
 

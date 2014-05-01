@@ -5,7 +5,7 @@ class ProjectClassesController < ApplicationController
 		if params[:search]
 		  @projectclasses = ProjectClass.search(params[:search])
 		else
-		  @projectclasses = ProjectClass.all
+		  @projectclasses = ProjectClass.classes_by_project_id(params[:project_id])
 		end
 	end
 
