@@ -28,4 +28,19 @@ class Project < ActiveRecord::Base
 			total/num
 		end
 	end
+
+	def all_average_scores()
+		num = self.reviews.size
+		if num != 0
+			totals = Array.new(3,0)
+			self.reviews.each do |r|
+				totals[0] += r.overallScore
+				totals[1] += r.implementationScore
+				totals[2] += r.planningScore			
+				end
+			return totals.map!{|score| score/num} 
+		else
+			return "none"
+		end 
+	end
 end

@@ -2,8 +2,16 @@
   <div class="container">
     <h1><%=@project.name%></h1>
     <p>
-      <strong>Average Rating:</strong>
-      <%= @average_score %>
+      <strong>Average Overall Rating:</strong>
+      <%= @overallScore %>
+    </p>
+    <p>
+      <strong>Average Implementation Rating:</strong>
+      <%= @implementationScore %>
+    </p>
+    <p>
+      <strong>Average Planning Rating:</strong>
+      <%= @planningScore %>
     </p>
     <p>
       <strong>Description:</strong>
@@ -31,5 +39,22 @@
       <% end %>
     </p>
     <%= link_to "Back to Projects List", projects_path %>
+
+<h2>Reviews</h2>
+    <table class="table">
+      <tr>
+        <th>Username</th>
+        <th>Overall</th>
+        <th>Comments</th>
+      </tr>
+      <% @project.reviews.each do |r| %>
+        <tr>
+          <td><%= link_to User.find(r.user_id).username, user_path(r.user_id) %></td>
+          <td><%= r.overallScore %></td>
+          <td><%= r.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+
   </div>
 </div>
