@@ -39,7 +39,32 @@
             <%= f.label :scale, "Scale" %>
             <%= f.select :scale, ["Small 0-10", "Medium 11-20", "Large 21+"], class: "form-control" %>
           </div>
-
+          <div class="form-group">
+            <%= f.label :type, "Project Type"%>
+            <%= f.text_field :type, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :learningStandards, "Learning Standards" %>
+            <%= f.text_area :learningStandards, class: "form-control", rows: 1%>
+          </div>
+          <div class="form-group">
+            <%= f.label :preparation, "Preparation Activities" %><br>
+            <%= check_box_tag(:prepataion) %>
+            <%= label_tag(:preparation, "Topic Research") %>
+            <%= check_box_tag(:prepataion) %>
+            <%= label_tag(:preparation, "Topic Readings") %>
+            <%= check_box_tag(:prepataion) %>
+            <%= label_tag(:preparation, "Teacher Presentations") %>
+            <%= check_box_tag(:prepataion) %>
+            <%= label_tag(:preparation, "Community Partner & Expert Presentations") %>
+            <%= check_box_tag(:prepataion) %>
+            <%= label_tag(:preparation, "Student Presentations") %>
+            <%= check_box_tag(:prepataion) %>
+            <%= label_tag(:preparation, "Discussion of Learning Goals") %>
+            <%= check_box_tag(:prepataion) %>
+            <%= label_tag(:preparation, "Discussion of Project Procedure") %>
+            <%= f.text_area :learningStandards, class: "form-control", rows: 1%>
+          </div>
           <%= f.submit :class => "btn btn-default" %>
         <% end %>
       </div>
