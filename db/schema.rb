@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501212956) do
+ActiveRecord::Schema.define(version: 20140524210256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,11 +48,11 @@ ActiveRecord::Schema.define(version: 20140501212956) do
     t.datetime "updated_at"
     t.integer  "teacher_id"
     t.string   "scale"
-    t.string   "type"
     t.string   "learningStandards"
-    t.string   "preparation",       default: [], array: true
     t.string   "conclusion",        default: [], array: true
     t.string   "materials"
+    t.string   "projectType"
+    t.text     "preparation",       default: [], array: true
   end
 
   add_index "projects", ["teacher_id"], name: "index_projects_on_teacher_id", using: :btree
