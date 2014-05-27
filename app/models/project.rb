@@ -19,8 +19,8 @@ class Project < ActiveRecord::Base
 
 	def all_average_scores()
 		num = self.reviews.size
+		totals = Array.new(3,0)
 		if num != 0
-			totals = Array.new(3,0)
 			self.reviews.each do |r|
 				totals[0] += r.overallScore
 				totals[1] += r.implementationScore
@@ -28,7 +28,7 @@ class Project < ActiveRecord::Base
 				end
 			return totals.map!{|score| score/num} 
 		else
-			return "none"
+			return Array.new(3,"no reviews yet")
 		end 
 	end
 end

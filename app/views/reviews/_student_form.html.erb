@@ -11,7 +11,7 @@
   <% end %>
   <div class="form-group">
     <%= f.label :project_id, "Project" %>
-    <%= f.select :project_id, @user.projects.all.collect { |p| [ p.name, p.id ] }, class: "form-control" %>
+    <%= f.select :project_id, @reviewable_projects.collect { |p| [ p.project.name, p.project_id ] }, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :overallScore %>

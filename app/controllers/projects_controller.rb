@@ -33,11 +33,13 @@ class ProjectsController < ApplicationController
   end
 
   def show 
-    @project = Project.find(params[:id])
+    proj_id = params[:id]
+    @project = Project.find(proj_id)
     @average_scores = @project.all_average_scores()
     @overallScore = @average_scores[0]
     @implementationScore = @average_scores[1]
-    @planningScore = @average_scores[2] 
+    @planningScore = @average_scores[2]
+    @reviewed = current_user.has_reviewed_project?(@project.id)
   end
 
   private 

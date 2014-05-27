@@ -35,7 +35,12 @@
         <%= link_to "Create Project Class", new_project_class_path(@project.id), class: "btn btn-primary" %>
       <% end %>
       <% if current_user and user_is_teacher %>
+
+        <% if @reviewed %>
+          <%= link_to "Edit Review", edit_review_path, class: "btn btn-default" %>
+        <% else %>
           <%= link_to "Create Review", new_review_path, class: "btn btn-default" %>
+        <% end %>
       <% end %>
     </p>
     <%= link_to "Back to Projects List", projects_path %>

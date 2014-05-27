@@ -35,4 +35,44 @@ class User < ActiveRecord::Base
     User.find_by email: email
   end
 
+  def has_reviewed_project?(proj_id)
+    has_reviewed = false
+    self.reviews.each do |review| 
+      if review.project_id == proj_id
+       has_reviewed = true
+      end
+    end
+    return has_reviewed
+  end
+
+  def get_project_review(proj_id)
+     proj_review = nil
+    self.reviews.each do |review| 
+      if review.project_id == proj_id
+       proj_review = review 
+      end
+    end
+    return proj_review
+  end
+
+#returns list of project_id of projects you have reviewed
+  def reviewed_project_ids
+    self.reviews.map!{|review| review.project_id}
+  end
+
+  def reviewed_projects
+    reviewed_project_ids.map! {|id| Project.find(id)}
+  end
+
+  def reviewable_projects
+    reviewed_projs_list = reviewed_project_ids
+    user = get_teacher_or_student
+    if is_teacher
+      temp = user.projects.keep_if {|proj| not reviewed_projs_list.include? proj.id }.map! {|id| Project.find(id)}
+      return temp
+    elsif is_student
+      user.project_classes.keep_if {|proj| not reviewed_projs_list.include? proj.project_id }.map! {|id| Project.find(id)}
+    end
+  end
+
 end
