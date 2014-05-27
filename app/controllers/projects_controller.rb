@@ -34,7 +34,6 @@ class ProjectsController < ApplicationController
 
   def show 
     @project = Project.find(params[:id])
-    @average_score = @project.get_average_score()
     @average_scores = @project.all_average_scores()
     @overallScore = @average_scores[0]
     @implementationScore = @average_scores[1]

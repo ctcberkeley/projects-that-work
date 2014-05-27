@@ -28,13 +28,13 @@
         <tr>
           <th>Name</th>
           <th>Description</th>
-          <th>Dates</th>
+          <th>Duration</th>
         </tr>
         <% @user.get_teacher_or_student.projects.each do |p| %>
           <tr>
             <td><%= link_to p.name, project_path(p) %></td>
             <td><%= p.description %></td>
-            <td><%= p.startDate.strftime("%B %d, %Y") %> - <%= p.endDate.strftime("%B %d, %Y") %></td>
+            <td><%= p.duration + " weeks" %></td>
           </tr>
         <% end %>
       </table>

@@ -16,18 +16,6 @@ class Project < ActiveRecord::Base
 		Project.find_by id: id
 	end
 
-	def get_average_score()
-		num = self.reviews.size
-		total = self.reviews.map!{|review| review.overallScore}.reduce(0) do |sum, value|
-			sum+value
-		end
-
-		if num == 0
-			"None :("
-		else
-			total/num
-		end
-	end
 
 	def all_average_scores()
 		num = self.reviews.size
