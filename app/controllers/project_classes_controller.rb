@@ -1,6 +1,8 @@
 class ProjectClassesController < ApplicationController
   before_action :set_project
-
+  before_action :verify_login, only: [:new. :create, :show]
+  before_action :verify_teacher, only: [:new. :create, :show]
+  
 	def index 
 		if params[:search]
 		  @projectclasses = ProjectClass.search(params[:search])
@@ -10,15 +12,7 @@ class ProjectClassesController < ApplicationController
 	end
 
   def new
-    if not current_user
-      redirect_to new_user_session_path 
-      flash[:notice] = "Please Log-In as a Teacher to Create a Project Class"
-    elsif user_is_teacher
-      @projectclass = ProjectClass.new
-    else
-      redirect_to root_path, 
-      flash[:notice] = "Only Teachers can Create New Project Classes"
-    end
+    @projectclass = ProjectClass.new
   end
 
   def create

@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+before_action :verify_login, only: [:new, :create, :edit, :update, :show]
+before_action :verify_teacher, only: [:new, :create, :edit, :update] 
   def index
     if params[:search]
       @projects = Project.search(params[:search])
@@ -8,28 +10,21 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    if not current_user
-      redirect_to new_user_session_path, 
-      flash[:notice] = "Please login as a teacher to create a project"
-    elsif user_is_teacher
       @project = Project.new
-    else
-      redirect_to root_path
-      flash[:notice] = "Only teachers can create new projects"
-    end
   end
 
   def create
   	@project = Project.new(project_params)
     @teacher = Teacher.get_teacher(current_user.id)
     @project.teacher_id = @teacher.id
+    saved = false
   	if @project.save
       @teacher.projects.build(params[:project].permit[:teacher_id])
-      redirect_to projects_path
-      flash[:success] = "Project Created Successfully"
-    else
-      render :action => 'new' 
+      saved = true
     end
+
+    on_success(saved,"projects", "new","projects_path")
+
   end
 
   def show 

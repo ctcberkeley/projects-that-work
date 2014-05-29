@@ -23,4 +23,27 @@ class ApplicationController < ActionController::Base
     def user_is_student
       return current_user.is_student
     end
+
+    def verify_login
+    	if not current_user
+      	redirect_to new_user_session_path 
+      	flash[:notice] = "Please log in to view this page"
+      end
+    end
+
+    def verify_teacher
+    	if !user_is_teacher
+    		redirect_to new_user_session_path 
+      	flash[:notice] = "Only teachers can view this page"
+    end
+    end
+
+    def on_success(saved, object, action, objects_path)
+    	if saved
+    		redirect_to send(objects_path)
+    	  flash[:success] = object.camelize.singularize + " Created Successfully"
+    	else
+      	render :action => action 
+    	end
+    end
 end

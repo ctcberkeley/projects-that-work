@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
-
+before_action :verify_login, only: [:new, :create, :edit, :update]
   def new
-    if current_user
       @user = current_user.get_teacher_or_student
       @reviewable_projects = current_user.reviewable_projects
       if @reviewable_projects.length == 0
@@ -13,22 +12,13 @@ class ReviewsController < ApplicationController
       else 
         @review = StudentReview.new
       end
-    else
-      redirect_to root_path
-      flash[:notice] = "You must be logged in to review a project"
-    end
   end
 
    def edit
-    if current_user
       @reviewable_projects = [Project.find(params[:id])]
       @user = current_user.get_teacher_or_student
       #or Teacher_Reviews.find_by current_user_id maybe faster
       @review = current_user.get_project_review(2)
-    else
-      redirect_to root_path
-      flash[:notice] = "You must be logged in to review a project"
-    end
   end
 
     def update
@@ -58,13 +48,11 @@ class ReviewsController < ApplicationController
       @review.user_id = current_user.id
       current_user.reviews.build(params[:student_review].permit[:user_id])
     end
-
+    saved = false
     if @review.save
-      redirect_to root_path
-      flash[:success] = "Review created successfully"
-    else
-      render :action => 'new'
+      saved = true
     end
+    on_success(saved,"reviews","new","root_path")
   end
 
   private 
