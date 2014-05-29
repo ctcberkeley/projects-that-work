@@ -14,6 +14,14 @@
       <%= @planningScore %>
     </p>
     <p>
+     <strong>Average Student Learning Rating:</strong>
+      <%= @learningScore %>
+    </p>
+    <p>
+     <strong>Average Teacher Educator Rating:</strong>
+      <%= @educatorScore %>
+    </p>
+    <p>
       <strong>Description:</strong>
       <%= @project.description %>
     </p>
@@ -37,7 +45,7 @@
       <% if current_user and user_is_teacher %>
 
         <% if @reviewed %>
-          <%= link_to "Edit Review", edit_review_path, class: "btn btn-default" %>
+          <%= link_to "Edit Review", edit_review_path(@review_id), class: "btn btn-default" %>
         <% else %>
           <%= link_to "Create Review", new_review_path, class: "btn btn-default" %>
         <% end %>
@@ -45,17 +53,33 @@
     </p>
     <%= link_to "Back to Projects List", projects_path %>
 
-<h2>Reviews</h2>
+<h2>Teacher Reviews</h2>
     <table class="table">
       <tr>
         <th>Username</th>
-        <th>Overall</th>
+        <th>Educator Score</th>
         <th>Comments</th>
       </tr>
-      <% @project.reviews.each do |r| %>
+      <% @project.teacher_reviews.each do |r| %>
         <tr>
           <td><%= link_to User.find(r.user_id).username, user_path(r.user_id) %></td>
-          <td><%= r.overallScore %></td>
+          <td><%= r.educatorScore %></td>
+          <td><%= r.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+
+<h2>Student Reviews</h2>
+    <table class="table">
+      <tr>
+        <th>Username</th>
+        <th>Learning Score</th>
+        <th>Comments</th>
+      </tr>
+      <% @project.student_reviews.each do |r| %>
+        <tr>
+          <td><%= link_to User.find(r.user_id).username, user_path(r.user_id) %></td>
+          <td><%= r.learningScore %></td>
           <td><%= r.comment %></td>
         </tr>
       <% end %>

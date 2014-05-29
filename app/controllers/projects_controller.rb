@@ -30,11 +30,16 @@ before_action :verify_teacher, only: [:new, :create, :edit, :update]
   def show 
     proj_id = params[:id]
     @project = Project.find(proj_id)
+    @average_student_score = @project.average_student_score()
+    @average_teacher_score = @project.average_teacher_score()
     @average_scores = @project.all_average_scores()
     @overallScore = @average_scores[0]
     @implementationScore = @average_scores[1]
     @planningScore = @average_scores[2]
+    @learningScore = @average_student_score[3]
+    @educatorScore = @average_teacher_score[3]
     @reviewed = current_user.has_reviewed_project?(@project.id)
+    @review_id = current_user.get_project_review(proj_id).id
   end
 
   private 

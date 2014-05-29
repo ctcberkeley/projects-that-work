@@ -12,18 +12,20 @@ before_action :verify_login, only: [:new, :create, :edit, :update]
       else 
         @review = StudentReview.new
       end
+      @review_url = review_path
   end
 
-   def edit
-      @reviewable_projects = [Project.find(params[:id])]
-      @user = current_user.get_teacher_or_student
-      #or Teacher_Reviews.find_by current_user_id maybe faster
-      @review = current_user.get_project_review(2)
+  def edit
+    @reviewable_projects = [Review.find(params[:id]).get_project]
+    @user = current_user.get_teacher_or_student
+    #or Teacher_Reviews.find_by current_user_id maybe faster
+    @review = Review.find(params[:id])
+    @review_url = review_path(@review)
   end
 
-    def update
-    @review = current_user.get_project_review(params[:id])
-    review_params 
+  def update
+    @review = Review.find(params[:id])
+    review_params = nil
     if user_is_teacher  
       review_params = teacher_review_params
     else
@@ -31,7 +33,8 @@ before_action :verify_login, only: [:new, :create, :edit, :update]
     end
     
     if @review.update_attributes(review_params)
-      redirect_to root_path, :notice  => "Account Info Updated"
+      redirect_to root_path
+      flash[:notice]  = "Review Updated Successfully"
     else
       render :action => 'edit'
     end

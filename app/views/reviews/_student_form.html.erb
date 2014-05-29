@@ -1,4 +1,4 @@
-<%= form_for @review, url: reviews_path do |f| %>
+<%= form_for @review, url: @review_url do |f| %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
@@ -9,9 +9,10 @@
       </ul>
     </div>
   <% end %>
+
   <div class="form-group">
     <%= f.label :project_id, "Project" %>
-    <%= f.select :project_id, @reviewable_projects.collect { |p| [ p.project.name, p.project_id ] }, class: "form-control" %>
+    <%= f.select :project_id, @reviewable_projects.collect { |p| [ p.name, p.id ] }, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :overallScore %>

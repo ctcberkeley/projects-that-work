@@ -1,7 +1,7 @@
 class ProjectClassesController < ApplicationController
   before_action :set_project
-  before_action :verify_login, only: [:new. :create, :show]
-  before_action :verify_teacher, only: [:new. :create, :show]
+  before_action :verify_login, only: [:new, :create, :show]
+  before_action :verify_teacher, only: [:new, :create, :show]
   
 	def index 
 		if params[:search]

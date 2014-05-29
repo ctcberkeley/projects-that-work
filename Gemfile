@@ -54,7 +54,7 @@ gem "mocha", group: :test
 
 # for multi-table inheritance in rails 
 
-gem 'acts_as_relation', '~> 1.0'
+#gem 'acts_as_relation', '~> 1.0'
 
 # for Heroku integration 
  gem 'rails_12factor', group: :production
@@ -66,3 +66,9 @@ gem 'acts_as_relation', '~> 1.0'
 
 # Use Twitter Bootstrap
 gem 'bootstrap-sass', '~> 3.1.1.0'
+
+# for STI using hstore to save column space
+gem 'hstore_accessor'
+
+#makes printing ruby objects legible 
+gem 'awesome_print'

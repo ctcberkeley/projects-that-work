@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+before_action :verify_login, only: [:show, :edit, :update]
   
   def new
     @user = User.new
@@ -36,11 +37,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if not current_user
-      redirect_to new_user_session_path, :notice => "Please Log-In to View Profiles"
-    else
-      @user = User.find(params[:id])
-    end
+    @user = User.find(params[:id])
   end
 
   def update

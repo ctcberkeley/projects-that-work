@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140524210256) do
+ActiveRecord::Schema.define(version: 20140529205011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "project_classes", force: true do |t|
     t.datetime "created_at"
@@ -66,8 +67,8 @@ ActiveRecord::Schema.define(version: 20140524210256) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "project_id"
-    t.integer  "reviewable_id"
-    t.string   "reviewable_type"
+    t.string   "type"
+    t.hstore   "field"
   end
 
   add_index "reviews", ["project_id"], name: "index_reviews_on_project_id", using: :btree
@@ -89,15 +90,6 @@ ActiveRecord::Schema.define(version: 20140524210256) do
     t.datetime "updated_at"
   end
 
-  create_table "student_reviews", force: true do |t|
-    t.integer  "learningScore"
-    t.integer  "impactScore"
-    t.integer  "enjoyabilityScore"
-    t.integer  "repeatabilityScore"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "students", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -105,12 +97,6 @@ ActiveRecord::Schema.define(version: 20140524210256) do
   end
 
   add_index "students", ["user_id"], name: "index_students_on_user_id", using: :btree
-
-  create_table "teacher_reviews", force: true do |t|
-    t.integer  "educatorScore"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "teachers", force: true do |t|
     t.datetime "created_at"

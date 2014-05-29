@@ -42,13 +42,15 @@
     <h2>Reviews</h2>
     <table class="table">
       <tr>
+        <th>Edit</th>
         <th>Project</th>
         <th>Overall</th>
         <th>Comments</th>
       </tr>
       <% @user.reviews.each do |r| %>
         <tr>
-          <td><%= link_to r.project.name, project_path(r) %></td>
+          <td><%= link_to "Edit Review", edit_review_path(r), class: "btn btn-default" %></td>
+          <td><%= link_to r.project.name, project_path(r.project_id) %></td>
           <td><%= r.overallScore %></td>
           <td><%= r.comment %></td>
         </tr>
