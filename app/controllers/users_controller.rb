@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 before_action :verify_login, only: [:show, :edit, :update]
-  
+before_action :set_user, only: [:edit, :update]
   def new
     @user = User.new
   end
@@ -33,7 +33,6 @@ before_action :verify_login, only: [:show, :edit, :update]
   end
 
   def edit
-    @user = current_user
   end
 
   def show
@@ -41,7 +40,6 @@ before_action :verify_login, only: [:show, :edit, :update]
   end
 
   def update
-    @user = current_user
     if @user.update_attributes(user_params)
       redirect_to root_path, :notice  => "Account Info Updated"
     else
@@ -60,5 +58,9 @@ before_action :verify_login, only: [:show, :edit, :update]
 
     def student_params
       params.require(:user).permit(:user_id)
+    end
+
+    def set_user
+      @user = current_user
     end
 end

@@ -32,10 +32,10 @@ class ApplicationController < ActionController::Base
     end
 
     def verify_teacher
-    	if !user_is_teacher
+    	if not user_is_teacher
     		redirect_to new_user_session_path 
       	flash[:notice] = "Only teachers can view this page"
-    end
+      end
     end
 
     def on_success(saved, object, action, objects_path)
