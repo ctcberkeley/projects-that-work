@@ -65,13 +65,13 @@ class User < ActiveRecord::Base
   end
 
   def reviewable_projects
-    reviewed_projs_list = reviewed_project_ids
+    reviewed_projs_list = reviewed_projects
     user = get_teacher_or_student
     if is_teacher
-      temp = user.projects.keep_if {|proj| not reviewed_projs_list.include? proj.id }.map! {|id| Project.find(id)}
+      temp = user.projects.keep_if {|proj| not reviewed_projs_list.include? proj }
       return temp
     elsif is_student
-      user.project_classes.keep_if {|proj| not reviewed_projs_list.include? proj.project_id }.map! {|id| Project.find(id)}
+      user.project_classes.keep_if {|projclass| not reviewed_projs_list.include? Project.find(projclass.project_id)}
     end
   end
 

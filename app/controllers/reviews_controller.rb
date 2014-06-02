@@ -11,7 +11,7 @@ before_action :set_user, only: [:new, :edit, :create]
       else 
         @review = StudentReview.new
       end
-      @review_url = review_path
+      @review_url = new_review_path
   end
 
   def edit

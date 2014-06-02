@@ -41,7 +41,7 @@ before_action :set_user, only: [:edit, :update]
 
   def update
     if @user.update_attributes(user_params)
-      redirect_to root_path, :notice  => "Account Info Updated"
+      redirect_to user_path(current_user), :notice  => "Account Info Updated"
     else
       render :action => 'edit'
     end
