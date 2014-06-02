@@ -33,10 +33,12 @@ Two schools are generated from the seed.rb file
 3a) Both Students and Teachers can create Reviews for Projects, but they differ in the fields. For instance, Student Reviews have a learningScore while Teacher Reviews
 have an educatorScore. These different types of Reviews are stored using Single Table Inheritence with a dynamic hash attribute named :field.
 
-3b) All the Reviews for a Project are separated into Teacher and Student Reviews and the average ratings are displayed along with the general Project info.
+3b) Teachers and Students can only make one review per project they belong to or have created. Once the review has been made it can be edited or deleted. 
 
-3c) All the reviews created by the user can be found on the User Profile page as well as all the projects they belong to or have created. 
+3c) All the Reviews for a Project are separated into Teacher and Student Reviews and the average ratings are displayed along with the general Project info.
 
-5) When Teachers create a Project Class they can add Students to the Project Class by their emails. In the future we would like Students to recieve an email notification to join the project and sign up to Projects That Work if they are not sign up already. 
+3d) All the reviews created by the user can be found on the User Profile page as well as all the projects they belong to or have created. 
 
-5)    
+4) When Teachers create a Project Class they can add Students to the Project Class by their emails. In the future we would like Students to recieve an email notification to join the project and sign up to Projects That Work if they are not sign up already. 
+
+    

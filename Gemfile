@@ -32,9 +32,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
-
 # Use unicorn as the app server
 # gem 'unicorn'
 
@@ -52,9 +49,12 @@ gem 'nifty-generators', group: :development
 
 gem "mocha", group: :test
 
-# for multi-table inheritance in rails 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'factory_girl_rails'
+end
 
-#gem 'acts_as_relation', '~> 1.0'
+
 
 # for Heroku integration 
  gem 'rails_12factor', group: :production

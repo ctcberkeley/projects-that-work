@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :current_user_session, :user_is_teacher, :user_is_student
 
+   rescue_from(ActiveRecord::RecordNotFound) {
+    response_to_missing_resource
+  }
+
+  before_action :set_previous_url 
   private
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
@@ -45,5 +50,14 @@ class ApplicationController < ActionController::Base
     	else
       	render :action => action 
     	end
+    end
+
+    def set_previous_url
+      session[:return_to] = request.referer
+    end
+
+    def response_to_missing_resource
+      redirect_to session.delete(:return_to) || root_path
+      flash[:notice] = "The page you are looking for is not found."
     end
 end
