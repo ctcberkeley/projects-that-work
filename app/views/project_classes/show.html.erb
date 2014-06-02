@@ -1,6 +1,23 @@
 <div class="section">
   <div class="container">
     <h1>Project Class <%=@projectclass.id%></h1>   
+
+    <strong>Average Overall Student Rating:</strong>
+      <%= @overallScore %>
+    </p>
+    <p>
+      <strong>Average Student Implementation Rating:</strong>
+      <%= @implementationScore %>
+    </p>
+    <p>
+      <strong>Average Student Planning Rating:</strong>
+      <%= @planningScore %>
+    </p>
+    <p>
+     <strong>Average Student Learning Rating:</strong>
+      <%= @learningScore %>
+    </p>
+
     <p>
       <strong>Teacher:</strong>
       <%= @teacher.get_name %>

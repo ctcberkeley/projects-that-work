@@ -8,7 +8,7 @@ ProjectsThatWork::Application.routes.draw do
   resources :users
   resources :schools
   resources :projects do 
-    resources :project_classes, :as => "class"
+    resources :project_classes, :as => "class", :path => "classes"
   end
 
   resources :user_sessions

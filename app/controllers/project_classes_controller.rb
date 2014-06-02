@@ -45,6 +45,12 @@ class ProjectClassesController < ApplicationController
   def show 
 	 @projectclass = ProjectClass.includes(:students).find(params[:id])
    @teacher = @projectclass.teacher
+   @average_student_score = @projectclass.average_student_review()
+   @overallScore = @average_student_score[0]
+   @implementationScore = @average_student_score[1]
+   @planningScore = @average_student_score[2]
+   @learningScore = @average_student_score[3]
+    #@educatorScore = @average_teacher_score[3]
   end
 
   private 

@@ -19,6 +19,10 @@ class Student < ActiveRecord::Base
 		(User.find_by id: self.user_id).last_name
 	end
 
+	def get_review(proj_id)
+		self.user.reviews.where(:project_id => proj_id).first 
+	end
+
 	def self.get_student(id)
 		Student.find_by user_id: id
 	end
