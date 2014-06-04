@@ -45,7 +45,7 @@
       <% if current_user and user_is_teacher %>
 
         <% if @reviewed %>
-          <%= link_to "Edit Review", edit_review_path(@review_id), class: "btn btn-default" %>
+          <%= link_to "Edit Review", edit_review_path(@review.id), class: "btn btn-default" %>
         <% else %>
           <%= link_to "Create Review", new_review_path, class: "btn btn-default" %>
         <% end %>

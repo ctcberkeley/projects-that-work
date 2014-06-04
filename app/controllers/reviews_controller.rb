@@ -11,7 +11,7 @@ before_action :set_user, only: [:new, :edit, :create]
       else 
         @review = StudentReview.new
       end
-      @review_url = new_review_path
+      @review_url = reviews_path
   end
 
   def edit
@@ -37,6 +37,7 @@ before_action :set_user, only: [:new, :edit, :create]
   end
 
   def create
+ 
     if user_is_teacher
       @review = TeacherReview.new(teacher_review_params)
       @review.user_id = current_user.id
@@ -46,6 +47,8 @@ before_action :set_user, only: [:new, :edit, :create]
       @review.user_id = current_user.id
       current_user.reviews.build(params[:student_review].permit[:user_id])
     end
+
+    
     saved = false
     if @review.save
       saved = true

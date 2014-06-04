@@ -48,7 +48,8 @@ class ApplicationController < ActionController::Base
     		redirect_to send(objects_path)
     	  flash[:success] = object.camelize.singularize + " Created Successfully"
     	else
-      	render :action => action 
+         flash[:error] = object.camelize.singularize + " was not created"
+      	 render :action => action 
     	end
     end
 

@@ -19,5 +19,8 @@
 
     <%= render 'layouts/footer' %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <% if params[:controller] == 'reviews' %>
+      <%= javascript_include_tag "reviews", "data-turbolinks-eval" => true %> 
+    <% end %>
   </body>
 </html>

@@ -38,8 +38,7 @@ before_action :get_review, only: [:show]
     @planningScore = @average_scores[2]
     @learningScore = @average_student_score[3]
     @educatorScore = @average_teacher_score[3]
-    @reviewed = @review.nil?
-    @review_id = @review.id
+    @reviewed = !@review.nil?
   end
 
   private 
