@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529205011) do
+ActiveRecord::Schema.define(version: 20140606165827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,11 +54,16 @@ ActiveRecord::Schema.define(version: 20140529205011) do
     t.string   "conclusion",        default: [], array: true
     t.string   "materials"
     t.text     "preparation",       default: [], array: true
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
   end
 
   add_index "projects", ["teacher_id"], name: "index_projects_on_teacher_id", using: :btree
 
   create_table "reviews", force: true do |t|
+    t.integer  "as_review_id"
+    t.string   "as_review_type"
     t.integer  "overallScore"
     t.integer  "planningScore"
     t.integer  "implementationScore"

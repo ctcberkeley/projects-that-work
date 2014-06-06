@@ -22,6 +22,9 @@ before_action :get_review, only: [:show]
     logger.debug "Project should be valid: #{@project.valid?}"
     @teacher = Teacher.get_teacher(current_user.id)
     @project.teacher_id = @teacher.id
+    @project.city = @teacher.school.city
+    @project.state = @teacher.school.state
+    @project.zip = @teacher.school.zip
     saved = false
   	if @project.save
       @teacher.projects.build(params[:project].permit[:teacher_id])

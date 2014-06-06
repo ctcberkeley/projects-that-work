@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
 
 	def self.search(search)
 		search_condition = "%" + search + "%"
-  		find(:all, :conditions => ['name LIKE ? OR description LIKE ?', search_condition, search_condition])
+  		find(:all, :conditions => ['name LIKE ? OR description LIKE ? OR city LIKE ? OR state LIKE ? OR zip LIKE ?', search_condition, search_condition, search_condition, search_condition,search_condition])
 	end
 
 	def self.get_project(id)
