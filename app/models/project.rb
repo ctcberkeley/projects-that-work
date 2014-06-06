@@ -7,6 +7,12 @@ class Project < ActiveRecord::Base
 
 	belongs_to :teacher
 
+	PREPARATION_ACTIVITIES = ["Topic Research",
+		"Topic Readings","Teacher Presentations",
+		"Community Partner & Expert Presentations",
+		"Student Presentations","Discussion of Learning Goals",
+		"Discussion of Project Procedure"]
+
 	def self.search(search)
 		search_condition = "%" + search + "%"
   		find(:all, :conditions => ['name LIKE ? OR description LIKE ?', search_condition, search_condition])
@@ -14,6 +20,10 @@ class Project < ActiveRecord::Base
 
 	def self.get_project(id)
 		Project.find_by id: id
+	end
+
+	def self.get_preparation_activities
+		PREPARATION_ACTIVITIES
 	end
 
 	def average_student_score(reviews=self.student_reviews)

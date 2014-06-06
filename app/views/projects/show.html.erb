@@ -1,3 +1,4 @@
+<%= debug @project %>
 <div class="section">
   <div class="container">
     <h1><%=@project.name%></h1>
@@ -37,6 +38,16 @@
     <p>
       <strong>School:</strong>
       <%= @project.teacher.school.name %>
+    </p>
+    <p>
+      <strong>Preparation Activities:</strong>
+      <br>
+       <% @preparation_activities.each_with_index do |activity,index|  %>
+              
+              <%= check_box_tag(activity,1,@project.preparation[index]=='on',:disabled => true )%>
+              <%= label_tag(activity) %>
+              <br>
+        <% end %>
     </p>
     <p>
       <% if current_user and user_is_teacher %>

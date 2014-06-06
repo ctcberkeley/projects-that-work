@@ -13,10 +13,13 @@ before_action :get_review, only: [:show]
 
   def new
       @project = Project.new
+      @preparation_activities = Project.get_preparation_activities()
   end
 
   def create
   	@project = Project.new(project_params)
+    logger.debug "New project: #{@project.attributes.inspect}"
+    logger.debug "Project should be valid: #{@project.valid?}"
     @teacher = Teacher.get_teacher(current_user.id)
     @project.teacher_id = @teacher.id
     saved = false
@@ -39,11 +42,12 @@ before_action :get_review, only: [:show]
     @learningScore = @average_student_score[3]
     @educatorScore = @average_teacher_score[3]
     @reviewed = !@review.nil?
+    @preparation_activities = Project.get_preparation_activities()
   end
 
   private 
   	def project_params
-		params.require(:project).permit(:name, :duration, :description,  :scale, :learningStandards, :preparation, :startDate, :endDate, :grade, :course, :numStudents)
+		params.require(:project).permit(:name, :duration, :description,  :scale, :learningStandards, {:preparation => []}, :startDate, :endDate, :grade, :course, :numStudents, {:type => []})
 	end
 
     def set_project
