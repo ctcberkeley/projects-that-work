@@ -18,8 +18,6 @@ before_action :get_review, only: [:show]
 
   def create
   	@project = Project.new(project_params)
-    logger.debug "New project: #{@project.attributes.inspect}"
-    logger.debug "Project should be valid: #{@project.valid?}"
     @teacher = Teacher.get_teacher(current_user.id)
     @project.teacher_id = @teacher.id
     @project.city = @teacher.school.city

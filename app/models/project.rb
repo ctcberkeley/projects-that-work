@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
 
 	def self.search(search)
 		search_condition = "%" + search + "%"
-  		find(:all, :conditions => ['name LIKE ? OR description LIKE ? OR city LIKE ? OR state LIKE ? OR zip LIKE ?', search_condition, search_condition, search_condition, search_condition,search_condition])
+  		find(:all, :conditions => ['name LIKE ? OR description LIKE ?', search_condition, search_condition])
 	end
 
 	def self.get_project(id)
@@ -27,47 +27,51 @@ class Project < ActiveRecord::Base
 	end
 
 	def average_student_score(reviews=self.student_reviews)
+		reviews.compact!
 		num = reviews.size
 		totals = Array.new(4,0)
 		if num != 0
+
 			reviews.each do |r|
-				totals[0] += r.overallScore
-				totals[1] += r.implementationScore
-				totals[2] += r.planningScore
-				totals[3] += r.learningScore			
+					totals[0] += r.overallScore
+					totals[1] += r.implementationScore
+					totals[2] += r.planningScore
+					totals[3] += r.learningScore	
 			end
-			return totals.map!{|score| score/num}
+			return totals.map!{|score| score.to_f/num}
 		else
 			return Array.new(4,"no reviews yet") 
 		end
 	end
 
 	def average_teacher_score(reviews=self.teacher_reviews)
+		reviews.compact!
 		num = reviews.size
 		totals = Array.new(4,0)
-		if num != 0
+		if num != 0 
 			reviews.each do |r|
-				totals[0] += r.overallScore
-				totals[1] += r.implementationScore
-				totals[2] += r.planningScore
-				totals[3] += r.educatorScore			
+					totals[0] += r.overallScore
+					totals[1] += r.implementationScore
+					totals[2] += r.planningScore
+					totals[3] += r.educatorScore	
 			end
-			return totals.map!{|score| score/num} 
+			return totals.map!{|score| score.to_f/num} 
 		else
 			return Array.new(4,"no reviews yet") 
 		end
 	end
 
 	def all_average_scores()
-		num = self.reviews.size
+		reviews.compact!
+		num = reviews.size
 		totals = Array.new(3,0)
 		if num != 0
 			self.reviews.each do |r|
-				totals[0] += r.overallScore
-				totals[1] += r.implementationScore
-				totals[2] += r.planningScore			
-				end
-			return totals.map!{|score| score/num} 
+					totals[0] += r.overallScore
+					totals[1] += r.implementationScore
+					totals[2] += r.planningScore			
+			end
+			return totals.map!{|score| score.to_f/num} 
 		else
 			return Array.new(3,"no reviews yet")
 		end 
