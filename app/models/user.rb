@@ -71,8 +71,11 @@ class User < ActiveRecord::Base
       temp = user.projects.keep_if {|proj| not reviewed_projs_list.include? proj }
       return temp
     elsif is_student
-      user.project_classes.keep_if {|projclass| not reviewed_projs_list.include? Project.find(projclass.project_id)}
+      temp = user.project_classes.map do |projclass|
+       Project.find(projclass.project_id)
+      end
+      temp = temp.keep_if {|proj| not reviewed_projs_list.include? proj}
+      return temp
     end
   end
-
 end
